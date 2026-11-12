@@ -13,13 +13,22 @@ const ContentSchema = new Schema({
     title : String,
     link : String,
     tags : [{type : mongoose.Types.ObjectId, ref : 'Tag'}],
-    userId : {type : mongoose.Types.ObjectId, ref : 'Users', required : true}
+    userId : {type : mongoose.Types.ObjectId, ref : 'User', required : true}
 });
 
-const Tags  = new Schema({
-    
+const TagSchema = new Schema({
+    title : {type : String, required : true}
+})
+
+const LinkSchema = new Schema({
+    hash : {type : String, required : true},
+    userId : {type : mongoose.Types.ObjectId, ref : 'User', required : true}
 })
 
 export const ContentModel = model("Content", ContentSchema);
 
 export const UserModel = model("User", UserSchema); //User is the name of collection
+
+export const TagModel = model("Tag", TagSchema);
+
+export const LinkModel = model("Link", LinkSchema);
